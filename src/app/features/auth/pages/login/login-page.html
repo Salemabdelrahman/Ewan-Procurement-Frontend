@@ -1,0 +1,86 @@
+<section
+  class="login-card"
+  [attr.dir]="language() === 'ar' ? 'rtl' : 'ltr'"
+  [attr.lang]="language()"
+>
+  <header class="card-header">
+    <img class="logo" src="assets/images/authlogo.png" alt="Ewan" width="265" height="72" />
+    <p class="system-title">{{ copy().systemName }}</p>
+    <p class="introduction">{{ copy().introduction }}</p>
+  </header>
+
+  <h1 class="form-title">{{ copy().title }}</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form" novalidate>
+    <div class="form-group">
+      <input
+        id="userName"
+        type="text"
+        formControlName="userName"
+        autocomplete="username"
+        autocapitalize="none"
+        spellcheck="false"
+        placeholder=" "
+        (input)="clearServiceNotice()"
+        [attr.aria-invalid]="isInvalid('userName') ? 'true' : null"
+        [attr.aria-describedby]="isInvalid('userName') ? 'userName-error' : null"
+      />
+      <label for="userName">{{ copy().userName }}</label>
+      @if (isInvalid('userName')) {
+        <small id="userName-error" class="field-error" role="alert">
+          {{ copy().required }}
+        </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <input
+        id="password"
+        [type]="showPassword() ? 'text' : 'password'"
+        formControlName="password"
+        autocomplete="current-password"
+        placeholder=" "
+        (input)="clearServiceNotice()"
+        [attr.aria-invalid]="isInvalid('password') ? 'true' : null"
+        [attr.aria-describedby]="isInvalid('password') ? 'password-error' : null"
+      />
+      <label for="password">{{ copy().password }}</label>
+      <button
+        class="password-toggle"
+        type="button"
+        [attr.aria-label]="showPassword() ? copy().hidePassword : copy().showPassword"
+        (click)="togglePasswordVisibility()"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      </button>
+      @if (isInvalid('password')) {
+        <small id="password-error" class="field-error" role="alert">
+          {{ copy().required }}
+        </small>
+      }
+    </div>
+
+    <label class="remember-check">
+      <input type="checkbox" formControlName="rememberMe" />
+      <span>{{ copy().rememberMe }}</span>
+    </label>
+
+    <button class="submit-button" type="submit">
+      {{ copy().title }}
+    </button>
+
+    @if (showServiceUnavailable()) {
+      <p class="service-notice" role="status">
+        {{ copy().serviceUnavailable }}
+      </p>
+    }
+
+    <button class="language-button" type="button" (click)="toggleLanguage()">
+      <span aria-hidden="true">文A</span>
+      {{ copy().switchLanguage }}
+    </button>
+  </form>
+</section>

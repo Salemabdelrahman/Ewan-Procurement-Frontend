@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Cairo';
+  src: url('assets/fonts/CairoRegular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --ewan-brand: #990c63;
+  --ewan-brand-deep: #7f0060;
+  --ewan-title: #10216c;
+  --ewan-text: #3d4149;
+  --ewan-danger: #f4516c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 20rem;
+  min-height: 100%;
+  background: #f8fafc;
+}
+
+body {
+  min-width: 20rem;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ewan-text);
+  background: #f8fafc;
+}
